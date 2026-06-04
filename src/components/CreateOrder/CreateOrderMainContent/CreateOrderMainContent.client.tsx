@@ -1,12 +1,55 @@
-import React from "react";
+import { useState } from "react";
 import { JSX } from "react/jsx-runtime";
 
-export default function CreateOrderMainContent(): JSX.Element | null {
-    return (
-      <div className="card">
-        <div className="card-body">
-          <h1 className="card-title">Create order</h1>
-        </div>
+export default function CreateOrderMainContent(): JSX.Element {
+  const [formData, setFormData] = useState({ fio: "", department: "", agreed: false });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement|HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+   
+  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+    e.preventDefault();
+    console.log(formData);
+  }
+
+  return (
+    <div className="card">
+      <div className="card-body">
+        <h5 className="card-title text-start">Create order</h5>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3 text-start">
+            <label htmlFor="fio" className="form-label">
+              ФИО создающего
+            </label>
+            <input type="text" name="fio" className="form-control" id="fio" value={formData.fio} onChange={handleChange} required />
+          </div>
+          <div className="mb-3">
+            <select name="department" className="form-select" onChange={handleChange} value={formData.department} required>
+              <option selected>Отдел</option>
+              <option value="1" selected>One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          <div className="mb-3 form-check text-start">
+            <input name="agreed" type="checkbox" className="form-check-input" id="agreed" onChange={handleChange} required />
+            <label className="form-check-label" htmlFor="agreed">
+              Заявка согласована
+            </label>
+          </div>
+          <div className="mb-3 text-end">
+            <button type="submit" className="btn btn-primary">
+              Save
+            </button>
+          </div>
+        </form>
       </div>
-    );
+    </div>
+  );
 }
