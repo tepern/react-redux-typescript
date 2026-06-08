@@ -1,4 +1,3 @@
 import CreateOrder from './CreateOrder.server';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-
+import './CreateOrder.scss';
 export default CreateOrder;
