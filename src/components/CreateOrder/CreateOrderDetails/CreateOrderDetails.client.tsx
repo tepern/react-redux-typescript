@@ -12,9 +12,9 @@ export default function CreateOrderDetails(): JSX.Element {
     amount: 1,
     price: 0,
   });
-  
+
   const dispatch = useAppDispatch();
-  
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {

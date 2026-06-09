@@ -7,7 +7,7 @@ type Tab = {
 };
 
 type Tabs = {
-  tabs: Tab[]
+  tabs: Tab[];
 };
 
 export default function CreateOrderFormWrapper({ tabs }: Tabs): JSX.Element {

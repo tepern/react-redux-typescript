@@ -6,8 +6,9 @@ import { useAppSelector } from "../../store/hooks";
 import { OrderItem } from "../../models/order-item";
 import { IRequest } from "../../models/request";
 import { IGeneralData } from "../../models/request";
+import { JSX } from "react";
 
-export default function CreateOrder(): React.ReactNode {
+export default function CreateOrder(): JSX.Element {
   const [formKey, setFormKey] = useState(0);
   const order: OrderItem = useAppSelector((state) => state.order);
   const general: IGeneralData = useAppSelector((state) => state.general);
@@ -15,7 +16,7 @@ export default function CreateOrder(): React.ReactNode {
   const handleSubmit = () => {
     const request: IRequest = {
       id: crypto.randomUUID(),
-      number: 1,
+      number: 0,
       creatorName: general.creatorName,
       department: general.department,
       isApproved: general.isApproved,
@@ -26,6 +27,7 @@ export default function CreateOrder(): React.ReactNode {
       updatedAt: "",
     };
     localStorage.setItem(request.id, JSON.stringify(request));
+    handlReset();
   };
 
   const handlReset = () => {
